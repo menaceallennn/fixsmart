@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FixSmart | Start Estimate</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="estimate">
+  <div class="page">
+    <header class="header">
+      <a class="brand" href="index.html">
+        <div class="logo">🔧</div>
+        <div>
+          <div class="brand-name">FixSmart</div>
+          <div class="brand-subtitle">Repair Estimator</div>
+        </div>
+      </a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="estimate.html">Check Repair</a>
+        <a href="#locations">El Paso TX</a>
+      </nav>
+      <a class="btn secondary" href="index.html">Back Home</a>
+    </header>
+
+    <main class="content-page">
+      <h1 class="page-title">Start your estimate</h1>
+      <p class="page-description">
+        Fill this out with your real vehicle information. Nothing is preset.
+        After you submit, the site opens a separate results page.
+      </p>
+
+      <div class="split">
+        <section class="form-panel">
+          <h2 class="section-title">Vehicle and repair details</h2>
+
+          <form id="estimateForm">
+            <div class="form-grid">
+              <div class="field">
+                <label for="year">Year</label>
+                <input id="year" type="number" placeholder="Example: 1980" />
+              </div>
+
+              <div class="field">
+                <label for="make">Make</label>
+                <input id="make" placeholder="Example: Chevrolet" />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="model">Model</label>
+              <input id="model" placeholder="Example: C10, Civic, Camry, Mustang" />
+            </div>
+
+            <div class="form-grid">
+              <div class="field">
+                <label for="mileage">Mileage</label>
+                <input id="mileage" type="number" placeholder="Example: 120000" />
+              </div>
+
+              <div class="field">
+                <label for="zip">ZIP Code</label>
+                <input id="zip" placeholder="Example: 79936 for El Paso" />
+              </div>
+            </div>
+
+            <div class="form-grid">
+              <div class="field">
+                <label for="engineType">Engine / vehicle type</label>
+                <select id="engineType">
+                  <option value="standard">Standard</option>
+                  <option value="turbo">Turbo / Supercharged</option>
+                  <option value="diesel">Diesel</option>
+                  <option value="hybrid">Hybrid</option>
+                  <option value="electric">Electric</option>
+                  <option value="classic">Classic / Carbureted</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="condition">Condition</label>
+                <select id="condition">
+                  <option value="average">Average</option>
+                  <option value="clean">Clean / maintained</option>
+                  <option value="rough">Rough / neglected</option>
+                  <option value="modified">Modified</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="issue">What's the issue?</label>
+              <select id="issue"></select>
+            </div>
+
+            <div class="field">
+              <label for="quote">Mechanic quote</label>
+              <input id="quote" type="number" placeholder="Example: 1200" />
+            </div>
+
+            <div class="field">
+              <label for="notes">Extra symptoms</label>
+              <textarea id="notes" placeholder="Example: rough idle, burning smell, stutters under load, check engine codes..."></textarea>
+            </div>
+
+            <button class="btn" type="submit">View My Results</button>
+          </form>
+        </section>
+
+        <aside>
+          <section class="card" id="how-it-works">
+            <h2 class="section-title">How it works</h2>
+            <div class="list">
+              <div class="info-box">
+                <h3>1. Base repair range</h3>
+                <p>The tool starts with a common price range for the repair category.</p>
+              </div>
+              <div class="info-box">
+                <h3>2. Vehicle factors</h3>
+                <p>It adjusts for age, mileage, brand, engine type, condition, and location.</p>
+              </div>
+              <div class="info-box">
+                <h3>3. Quote verdict</h3>
+                <p>Your quote is compared against the adjusted range to mark it fair, high, or overpriced.</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="card" id="locations" style="margin-top:18px;">
+            <h2 class="section-title">Locations included</h2>
+            <p class="help-text">
+              El Paso TX is included. Use ZIP codes like 79912, 79924, 79936, 79938, or any other local ZIP.
+              San Antonio and general Texas ZIP codes are also supported.
+            </p>
+          </section>
+        </aside>
+      </div>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
