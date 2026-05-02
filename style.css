@@ -1,16 +1,19 @@
 
 :root {
-  --bg: #070a11;
-  --panel: #101827;
-  --panel-2: #131e30;
-  --line: #263247;
-  --text: #f4f7fb;
-  --muted: #a8b2c3;
-  --soft: #c9d2df;
-  --red: #ff3838;
-  --red-dark: #d71919;
-  --green: #48d66d;
-  --yellow: #ffd166;
+  --bg: #000000;          /* pure black background */
+  --panel: #0a0a0a;       /* dark panels */
+  --panel-2: #121212;     /* slightly lighter panels */
+  --line: #1f1f1f;        /* subtle borders */
+
+  --text: #ffffff;        /* main text */
+  --muted: #9a9a9a;       /* secondary text */
+  --soft: #cfcfcf;        /* lighter text */
+
+  --red: #ff1a1a;         /* main red */
+  --red-dark: #cc0000;    /* hover red */
+
+  --green: #3cff7a;       /* keep for success */
+  --yellow: #ffd166;      /* keep for warnings */
 }
 
 * {
