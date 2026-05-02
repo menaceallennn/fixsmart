@@ -227,11 +227,25 @@ function initIssueSelect() {
 
 function submitEstimate(event) {
   event.preventDefault();
+
   const data = getFormData();
   if (!validateForm(data)) return;
+
   const calc = calculateEstimate(data);
   localStorage.setItem("fixsmartEstimate", JSON.stringify(calc));
-  window.location.href = "results.html";
+
+  const user = netlifyIdentity.currentUser();
+
+  if (user) {
+    window.location.href = "results.html";
+  } else {
+    netlifyIdentity.open("signup");
+
+    netlifyIdentity.on("login", () => {
+      netlifyIdentity.close();
+      window.location.href = "results.html";
+    });
+  }
 }
 
 function loadResults() {
@@ -372,3 +386,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (document.body.dataset.page === "results") loadResults();
 });
+if (window.netlifyIdentity) {
+  netlifyIdentity.init();
+}
