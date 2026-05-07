@@ -213,7 +213,8 @@ function getVerdict(calc) {
   return { label: "OVERPRICED", type: "bad", desc: "This quote is much higher than the adjusted range. Get a second opinion before approving the repair.", risk: "High price risk", angle: 48 };
 }
 
-function initIssueSelect() {
+function initIssueSelect() 
+{
   const select = document.getElementById("issue");
   if (!select) return;
   select.innerHTML = '<option value="" disabled selected>Select an issue</option>';
