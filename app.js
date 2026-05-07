@@ -381,6 +381,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const form = document.getElementById("estimateForm");
   if (form) form.addEventListener("submit", submitEstimate);
-  if (document.body.dataset.page === "results") loadResults();
+
+  if (document.body.dataset.page === "results") {
+    loadResults();
+  }
 });
 
