@@ -236,7 +236,8 @@ function submitEstimate(event) {
   localStorage.setItem("fixsmartEstimate", JSON.stringify(calc));
 
   window.location.href = "results.html";
-} else {
+}
+else {
     netlifyIdentity.open("signup");
 
     netlifyIdentity.on("login", () => {
