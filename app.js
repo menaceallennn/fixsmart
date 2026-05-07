@@ -1,4 +1,4 @@
-
+console.log("app.js loaded");
 const CURRENT_YEAR = new Date().getFullYear();
 
 const luxuryBrands = ["bmw","mercedes","mercedes-benz","audi","lexus","porsche","jaguar","land rover","range rover","cadillac","lincoln","infiniti","acura","volvo","tesla","genesis","maserati"];
