@@ -206,11 +206,43 @@ function getVerdict(calc) {
   const min = calc.adjustedMin;
   const max = calc.adjustedMax;
 
-  if (quote < min * 0.65) return { label: "VERY LOW", type: "warn", desc: "This quote is unusually low. Confirm it includes parts, labor, diagnostic fees, taxes, and the full repair.", risk: "Low quote risk", angle: -20 };
-  if (quote <= max * 1.15) return { label: "FAIR", type: "good", desc: "This quote is within the expected adjusted range. Still ask for parts, labor, warranty, and diagnostic proof.", risk: "Low price risk", angle: -42 };
-  if (quote <= max * 1.65) return { label: "HIGH", type: "warn", desc: "This quote is above the expected adjusted range. Ask for a full breakdown and consider a second opinion.", risk: "Medium price risk", angle: 0 };
+  if (quote < min * 0.65) {
+    return {
+      label: "VERY LOW",
+      type: "warn",
+      desc: "This quote is unusually low. Confirm it includes parts, labor, diagnostic fees, taxes, and the full repair.",
+      risk: "Low quote risk",
+      angle: -20
+    };
+  }
 
-  return { label: "OVERPRICED", type: "bad", desc: "This quote is much higher than the adjusted range. Get a second opinion before approving the repair.", risk: "High price risk", angle: 48 };
+  if (quote <= max * 1.15) {
+    return {
+      label: "FAIR",
+      type: "good",
+      desc: "Your quote is within the expected adjusted range. Still ask for parts, labor, warranty, and diagnostic proof.",
+      risk: "Low price risk",
+      angle: -42
+    };
+  }
+
+  if (quote <= max * 1.65) {
+    return {
+      label: "HIGH",
+      type: "warn",
+      desc: "Your quote is above the expected adjusted range. Ask for a full breakdown and consider a second opinion.",
+      risk: "Medium price risk",
+      angle: 0
+    };
+  }
+
+  return {
+    label: "OVERPRICED",
+    type: "bad",
+    desc: "This quote is much higher than the adjusted range. Get a second opinion before approving the repair.",
+    risk: "High price risk",
+    angle: 48
+  };
 }
 
 function initIssueSelect() 
