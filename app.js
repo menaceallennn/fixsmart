@@ -232,13 +232,11 @@ function submitEstimate(event) {
   if (!validateForm(data)) return;
 
   const calc = calculateEstimate(data);
+
   localStorage.setItem("fixsmartEstimate", JSON.stringify(calc));
 
-  const user = netlifyIdentity.currentUser();
-
-  if (user) {
-    window.location.href = "results.html";
-  } else {
+  window.location.href = "results.html";
+} else {
     netlifyIdentity.open("signup");
 
     netlifyIdentity.on("login", () => {
