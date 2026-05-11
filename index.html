@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FixSmart</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="logo">FS</div>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="#diagnostic">Diagnostic</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div>
+    <p class="tag">Professional vehicle diagnostic assistant</p>
+
+    <h1>Know what might be wrong before the mechanic tells you.</h1>
+
+    <p class="hero-text">
+      FixSmart helps drivers understand possible repair causes estimated pricing urgency and what to ask a repair shop before paying for diagnostics.
+    </p>
+
+    <a href="#diagnostic" class="main-btn">Start Diagnostic</a>
+  </div>
+
+  <div class="hero-card">
+    <h3>Built for smarter repair decisions</h3>
+
+    <ul>
+      <li>Vehicle dropdown matching</li>
+      <li>System based diagnostics</li>
+      <li>Repair estimate ranges</li>
+      <li>Trusted mechanic request form</li>
+    </ul>
+  </div>
+</section>
+
+<section class="stats">
+  <div>
+    <strong>Vehicle based</strong>
+    <span>Year make model and drivetrain filtering.</span>
+  </div>
+
+  <div>
+    <strong>Better estimates</strong>
+    <span>More realistic repair matching and cost ranges.</span>
+  </div>
+
+  <div>
+    <strong>Shop preparation</strong>
+    <span>Know what to ask before inspection.</span>
+  </div>
+</section>
+
+<section class="diagnostic" id="diagnostic">
+
+  <div class="box">
+    <h2>Vehicle Information</h2>
+
+    <div class="grid">
+
+      <div>
+        <label>Year</label>
+        <select id="year"></select>
+      </div>
+
+      <div>
+        <label>Make</label>
+        <select id="make">
+          <option>Select year first</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Model</label>
+        <select id="model">
+          <option>Select make first</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Powertrain</label>
+        <select id="powertrain">
+          <option value="standard">Standard Gas</option>
+          <option value="turbo">Turbocharged</option>
+          <option value="hybrid">Hybrid</option>
+          <option value="electric">Electric</option>
+          <option value="diesel">Diesel</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Drivetrain</label>
+        <select id="drivetrain">
+          <option value="unknown">Not Sure</option>
+          <option value="fwd">FWD</option>
+          <option value="rwd">RWD</option>
+          <option value="awd">AWD</option>
+          <option value="4wd">4WD</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Mileage</label>
+        <input type="number" id="mileage" placeholder="Example: 84215">
+      </div>
+
+    </div>
+  </div>
+
+  <div class="box">
+    <h2>Problem Details</h2>
+
+    <div class="grid">
+
+      <div class="full">
+        <label>Problem Area</label>
+        <select id="category"></select>
+      </div>
+
+      <div class="full">
+        <label>Main Symptom</label>
+        <select id="symptom"></select>
+      </div>
+
+      <div class="full">
+        <label>When does it happen?</label>
+        <select id="condition"></select>
+      </div>
+
+      <div class="full">
+        <label>Extra Details</label>
+        <textarea id="notes" placeholder="Describe your issue"></textarea>
+      </div>
+
+    </div>
+
+    <button id="analyzeBtn">Analyze Issue</button>
+  </div>
+
+</section>
+
+<section class="mechanic-box">
+
+  <div class="mechanic-top">
+    <p class="tag">Trusted mechanic request</p>
+
+    <h2>Need a trusted mechanic near you?</h2>
+
+    <p>
+      Submit your information and FixSmart can help connect you with a trusted local repair shop based on your vehicle issue and location.
+    </p>
+  </div>
+
+  <form name="trusted-mechanic" method="POST" data-netlify="true">
+
+    <input type="hidden" name="form-name" value="trusted-mechanic">
+
+    <div class="grid">
+
+      <div>
+        <label>Full Name</label>
+        <input type="text" name="name" required>
+      </div>
+
+      <div>
+        <label>Email</label>
+        <input type="email" name="email" required>
+      </div>
+
+      <div>
+        <label>Phone Number</label>
+        <input type="tel" name="phone" required>
+      </div>
+
+      <div>
+        <label>ZIP Code</label>
+        <input type="text" name="zip" required>
+      </div>
+
+      <div class="full">
+        <label>Vehicle Issue</label>
+        <textarea name="issue"></textarea>
+      </div>
+
+    </div>
+
+    <button type="submit">Find A Trusted Mechanic</button>
+
+  </form>
+
+</section>
+
+<script src="assets/diagnostic-data.js"></script>
+<script src="assets/app.js"></script>
+
+</body>
+</html>
