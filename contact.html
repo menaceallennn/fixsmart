@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | FixSmart</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html"><span class="brand-mark">FS</span><span>FixSmart</span></a>
+    <nav class="top-nav" aria-label="Main navigation">
+      <a href="index.html">Diagnostic</a>
+      <a href="how-it-works.html">How it works</a>
+      <a href="about.html">About</a>
+      <a class="active" href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero simple">
+      <p class="eyebrow">Contact</p>
+      <h1>Need help or want to report a wrong estimate?</h1>
+      <p>Send the vehicle year make model symptom and what result looked wrong. That helps improve the diagnostic logic.</p>
+    </section>
+
+    <section class="contact-box">
+      <form name="fixsmart-contact" method="POST" data-netlify="true">
+        <input type="hidden" name="form-name" value="fixsmart-contact" />
+
+        <div class="form-grid">
+          <div class="field">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" required />
+          </div>
+
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required />
+          </div>
+
+          <div class="field wide">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required placeholder="Tell us what happened"></textarea>
+          </div>
+        </div>
+
+        <div class="button-row">
+          <button type="submit">Send message</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <span>FixSmart</span>
+    <span>Pre-shop diagnostic estimate tool</span>
+  </footer>
+</body>
+</html>

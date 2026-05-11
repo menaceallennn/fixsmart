@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FixSmart | Vehicle Diagnostic Estimate</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">FS</span>
+      <span>FixSmart</span>
+    </a>
+
+    <nav class="top-nav" aria-label="Main navigation">
+      <a class="active" href="index.html">Diagnostic</a>
+      <a href="how-it-works.html">How it works</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero compact">
+      <div class="hero-copy">
+        <p class="eyebrow">Pre-shop vehicle diagnostic assistant</p>
+        <h1>Understand the likely issue before you walk into a shop.</h1>
+        <p>
+          Choose your vehicle and symptoms. FixSmart filters the issue by system so wheel noise stays in wheels, brakes, suspension, or drivetrain instead of giving unrelated AC results.
+        </p>
+      </div>
+      <div class="hero-panel">
+        <strong>Built for better shop conversations</strong>
+        <span>Clear symptoms. Better questions. Smarter estimates.</span>
+      </div>
+    </section>
+
+    <section class="layout">
+      <form class="diagnostic-card" id="diagnosticForm">
+        <div class="section-title">
+          <span>1</span>
+          <div>
+            <h2>Vehicle information</h2>
+            <p>Use dropdowns so the estimate can adjust by year make model powertrain and mileage.</p>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div class="field">
+            <label for="year">Year</label>
+            <select id="year" required></select>
+          </div>
+
+          <div class="field">
+            <label for="make">Make</label>
+            <select id="make" required>
+              <option value="">Select year first</option>
+            </select>
+            <small id="makeStatus"></small>
+          </div>
+
+          <div class="field">
+            <label for="model">Model</label>
+            <select id="model" required>
+              <option value="">Select make first</option>
+            </select>
+            <small id="modelStatus"></small>
+          </div>
+
+          <div class="field">
+            <label for="powertrain">Engine / powertrain</label>
+            <select id="powertrain">
+              <option value="standard">Standard gas</option>
+              <option value="turbo">Turbocharged</option>
+              <option value="hybrid">Hybrid</option>
+              <option value="electric">Electric</option>
+              <option value="diesel">Diesel</option>
+              <option value="performance">Performance / high output</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="drivetrain">Drivetrain</label>
+            <select id="drivetrain">
+              <option value="unknown">Not sure</option>
+              <option value="fwd">FWD</option>
+              <option value="rwd">RWD</option>
+              <option value="awd">AWD</option>
+              <option value="4wd">4WD</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="mileage">Mileage</label>
+            <select id="mileage">
+              <option value="low">0 - 50k</option>
+              <option value="normal">50k - 100k</option>
+              <option value="high">100k - 150k</option>
+              <option value="veryHigh">150k+</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="section-title second">
+          <span>2</span>
+          <div>
+            <h2>Problem details</h2>
+            <p>Select the problem area first. This prevents unrelated matches.</p>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div class="field wide">
+            <label for="category">Problem area</label>
+            <select id="category"></select>
+          </div>
+
+          <div class="field wide">
+            <label for="symptom">Main symptom</label>
+            <select id="symptom"></select>
+          </div>
+
+          <div class="field wide">
+            <label for="condition">When does it happen?</label>
+            <select id="condition"></select>
+          </div>
+
+          <div class="field wide">
+            <label for="severityInput">How bad is it?</label>
+            <select id="severityInput">
+              <option value="mild">Mild but noticeable</option>
+              <option value="moderate">Moderate and getting worse</option>
+              <option value="severe">Severe or feels unsafe</option>
+            </select>
+          </div>
+
+          <div class="field wide">
+            <label for="notes">Extra details</label>
+            <textarea id="notes" placeholder="Example: rear passenger side humming around 45 mph and changes when turning left"></textarea>
+          </div>
+        </div>
+
+        <div class="button-row">
+          <button type="submit">Analyze issue</button>
+          <button type="button" class="ghost" id="resetBtn">Reset</button>
+        </div>
+      </form>
+
+      <aside class="side-card">
+        <h3>What this tool does</h3>
+        <ul>
+          <li>Filters symptoms by vehicle system</li>
+          <li>Compares selected symptoms to common causes</li>
+          <li>Adjusts estimates by vehicle type and mileage</li>
+          <li>Gives shop inspection points</li>
+        </ul>
+
+        <div class="trust-box">
+          <strong>Important</strong>
+          <p>This is a pre-shop estimate. A mechanic still needs to inspect the vehicle before repair.</p>
+        </div>
+      </aside>
+    </section>
+
+    <section class="results hidden" id="results">
+      <div class="results-head">
+        <div>
+          <p class="eyebrow">Diagnostic result</p>
+          <h2 id="resultTitle">Likely causes</h2>
+        </div>
+        <div class="score" id="topScore">0%</div>
+      </div>
+
+      <div class="summary-grid" id="summaryGrid"></div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Likely cause</th>
+              <th>Probability</th>
+              <th>Estimate</th>
+              <th>Urgency</th>
+              <th>Why it matched</th>
+            </tr>
+          </thead>
+          <tbody id="resultRows"></tbody>
+        </table>
+      </div>
+
+      <div class="bottom-grid">
+        <div class="info-block">
+          <h3>What to ask the shop to check</h3>
+          <ul id="shopChecks"></ul>
+        </div>
+
+        <div class="info-block">
+          <h3>Estimate factors</h3>
+          <div id="factors"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>FixSmart</span>
+    <span>Pre-shop diagnostic estimate tool</span>
+  </footer>
+
+  <script src="assets/diagnostic-data.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
