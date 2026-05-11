@@ -1,0 +1,200 @@
+body{
+background:#050505;
+color:white;
+font-family:Arial;
+margin:0;
+}
+
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:22px;
+border-bottom:1px solid #222;
+background:#090909;
+}
+
+.logo{
+background:#111;
+border:1px solid #ff1d25;
+color:#ff1d25;
+padding:10px 14px;
+border-radius:10px;
+font-weight:bold;
+}
+
+nav{
+display:flex;
+gap:12px;
+flex-wrap:wrap;
+}
+
+nav a{
+color:#bbb;
+text-decoration:none;
+padding:10px 12px;
+border-radius:8px;
+}
+
+nav a:hover{
+background:#151515;
+color:white;
+}
+
+.hero{
+max-width:1200px;
+margin:auto;
+padding:50px 20px;
+display:grid;
+grid-template-columns:1.3fr .7fr;
+gap:20px;
+align-items:center;
+}
+
+.tag{
+color:#ff1d25;
+font-weight:bold;
+text-transform:uppercase;
+font-size:13px;
+}
+
+.hero h1{
+font-size:62px;
+line-height:0.95;
+margin:12px 0;
+}
+
+.hero-text{
+color:#aaa;
+max-width:700px;
+line-height:1.7;
+}
+
+.main-btn,
+button{
+background:#ff1d25;
+color:white;
+padding:14px 20px;
+border:none;
+border-radius:10px;
+font-weight:bold;
+cursor:pointer;
+display:inline-block;
+margin-top:18px;
+}
+
+.hero-card{
+background:#101010;
+border:1px solid #222;
+padding:24px;
+border-radius:18px;
+}
+
+.hero-card ul{
+padding-left:20px;
+color:#aaa;
+line-height:2;
+}
+
+.stats{
+max-width:1200px;
+margin:auto;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:16px;
+padding:0 20px 20px;
+}
+
+.stats div{
+background:#101010;
+border:1px solid #222;
+padding:20px;
+border-radius:14px;
+}
+
+.stats strong{
+display:block;
+margin-bottom:6px;
+}
+
+.stats span{
+color:#aaa;
+}
+
+.diagnostic{
+max-width:1200px;
+margin:auto;
+padding:0 20px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:18px;
+}
+
+.box,
+.mechanic-box{
+background:#101010;
+border:1px solid #222;
+padding:24px;
+border-radius:18px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:14px;
+}
+
+.full{
+grid-column:1/-1;
+}
+
+label{
+display:block;
+margin-bottom:6px;
+font-size:13px;
+font-weight:bold;
+}
+
+select,
+input,
+textarea{
+width:100%;
+padding:13px;
+background:#070707;
+border:1px solid #222;
+border-radius:10px;
+color:white;
+}
+
+textarea{
+min-height:120px;
+resize:vertical;
+}
+
+.mechanic-box{
+max-width:1200px;
+margin:20px auto;
+}
+
+.mechanic-top p{
+color:#aaa;
+max-width:700px;
+}
+
+@media(max-width:900px){
+
+.hero,
+.diagnostic,
+.stats{
+grid-template-columns:1fr;
+}
+
+.hero h1{
+font-size:42px;
+}
+
+.grid{
+grid-template-columns:1fr;
+}
+
+}
