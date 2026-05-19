@@ -1,207 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FixSmart</title>
-<link rel="stylesheet" href="assets/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FixSmart</title>
+  <link rel="stylesheet" href="assets/style.css" />
 </head>
 <body>
 
-<header class="header">
-  <div class="logo">FS</div>
+  <header class="header">
+    <div class="logo">FixSmart</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="#diagnostic">Diagnostic</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
 
-  <nav>
-    <a href="#">Home</a>
-    <a href="#diagnostic">Diagnostic</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-</header>
+  <main>
 
-<section class="hero">
-  <div>
-    <p class="tag">Professional vehicle diagnostic assistant</p>
+    <section class="hero">
+      <p class="tag">Professional vehicle diagnostic assistant</p>
+      <h1>Know what might be wrong before the mechanic tells you.</h1>
+      <p class="hero-text">
+        FixSmart helps drivers understand possible repair causes estimated pricing urgency safe to drive status and what to ask a repair shop before paying for diagnostics.
+      </p>
+      <a href="#diagnostic" class="main-btn">Start Diagnostic</a>
+    </section>
 
-    <h1>Know what might be wrong before the mechanic tells you.</h1>
+    <section class="features">
+      <div class="feature-card">
+        <h3>Vehicle based</h3>
+        <p>Year make model drivetrain and mileage filtering.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Better estimates</h3>
+        <p>More realistic repair matching and cost ranges.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Shop preparation</h3>
+        <p>Know what to ask before inspection.</p>
+      </div>
+    </section>
 
-    <p class="hero-text">
-      FixSmart helps drivers understand possible repair causes estimated pricing urgency and what to ask a repair shop before paying for diagnostics.
-    </p>
+    <section id="diagnostic" class="diagnostic-section">
 
-    <a href="#diagnostic" class="main-btn">Start Diagnostic</a>
-  </div>
+      <div class="panel">
+        <h2>Vehicle Information</h2>
 
-  <div class="hero-card">
-    <h3>Built for smarter repair decisions</h3>
+        <div class="form-grid">
+          <label>
+            Year
+            <select id="year">
+              <option value="">Select year</option>
+            </select>
+          </label>
 
-    <ul>
-      <li>Vehicle dropdown matching</li>
-      <li>System based diagnostics</li>
-      <li>Repair estimate ranges</li>
-      <li>Trusted mechanic request form</li>
-    </ul>
-  </div>
-</section>
+          <label>
+            Make
+            <select id="make">
+              <option value="">Select make</option>
+            </select>
+          </label>
 
-<section class="stats">
-  <div>
-    <strong>Vehicle based</strong>
-    <span>Year make model and drivetrain filtering.</span>
-  </div>
+          <label>
+            Model
+            <select id="model">
+              <option value="">Select model</option>
+            </select>
+          </label>
 
-  <div>
-    <strong>Better estimates</strong>
-    <span>More realistic repair matching and cost ranges.</span>
-  </div>
+          <label>
+            Powertrain
+            <select id="powertrain">
+              <option value="Gas">Gas</option>
+              <option value="Hybrid">Hybrid</option>
+              <option value="Electric">Electric</option>
+              <option value="Diesel">Diesel</option>
+            </select>
+          </label>
 
-  <div>
-    <strong>Shop preparation</strong>
-    <span>Know what to ask before inspection.</span>
-  </div>
-</section>
+          <label>
+            Drivetrain
+            <select id="drivetrain">
+              <option value="Not Sure">Not Sure</option>
+              <option value="FWD">FWD</option>
+              <option value="RWD">RWD</option>
+              <option value="AWD">AWD</option>
+              <option value="4WD">4WD</option>
+            </select>
+          </label>
 
-<section class="diagnostic" id="diagnostic">
-
-  <div class="box">
-    <h2>Vehicle Information</h2>
-
-    <div class="grid">
-
-      <div>
-        <label>Year</label>
-        <select id="year"></select>
+          <label>
+            Mileage
+            <input id="mileage" type="number" placeholder="Example: 84215" />
+          </label>
+        </div>
       </div>
 
-      <div>
-        <label>Make</label>
-        <select id="make">
-          <option>Select year first</option>
-        </select>
+      <div class="panel">
+        <h2>Problem Details</h2>
+
+        <div class="form-grid">
+          <label>
+            Problem Area
+            <select id="problemArea">
+              <option value="">Select problem area</option>
+              <option value="Engine">Engine</option>
+              <option value="Transmission">Transmission</option>
+              <option value="Brakes">Brakes</option>
+              <option value="AC">AC / Heating</option>
+              <option value="Suspension">Suspension</option>
+              <option value="Electrical">Electrical</option>
+              <option value="Cooling">Cooling System</option>
+            </select>
+          </label>
+
+          <label>
+            Main Symptom
+            <select id="symptom">
+              <option value="">Select symptom</option>
+              <option value="Noise">Noise</option>
+              <option value="Fluid leak">Fluid leak</option>
+              <option value="Warning light">Warning light</option>
+              <option value="Overheating">Overheating</option>
+              <option value="Vibration">Vibration</option>
+              <option value="Weak performance">Weak performance</option>
+              <option value="No start">No start</option>
+              <option value="Bad smell">Bad smell</option>
+            </select>
+          </label>
+
+          <label>
+            When does it happen?
+            <select id="condition">
+              <option value="">Select condition</option>
+              <option value="At startup">At startup</option>
+              <option value="At idle">At idle</option>
+              <option value="When accelerating">When accelerating</option>
+              <option value="When braking">When braking</option>
+              <option value="At highway speed">At highway speed</option>
+              <option value="All the time">All the time</option>
+            </select>
+          </label>
+        </div>
+
+        <label>
+          Extra Details
+          <textarea id="details" placeholder="Describe your issue"></textarea>
+        </label>
+
+        <button class="main-btn" onclick="analyzeIssue()">Analyze Issue</button>
       </div>
 
-      <div>
-        <label>Model</label>
-        <select id="model">
-          <option>Select make first</option>
-        </select>
+    </section>
+
+    <section id="result" class="result-section hidden">
+      <h2>FixSmart Diagnostic Preview</h2>
+
+      <div class="result-grid">
+        <div class="result-card">
+          <h3>Possible Causes</h3>
+          <ul id="causesList"></ul>
+        </div>
+
+        <div class="result-card">
+          <h3>Estimated Price Range</h3>
+          <p id="priceRange"></p>
+        </div>
+
+        <div class="result-card">
+          <h3>Safe To Drive?</h3>
+          <p id="safeToDrive"></p>
+        </div>
+
+        <div class="result-card">
+          <h3>Urgency Level</h3>
+          <p id="urgency"></p>
+        </div>
       </div>
 
-      <div>
-        <label>Powertrain</label>
-        <select id="powertrain">
-          <option value="standard">Standard Gas</option>
-          <option value="turbo">Turbocharged</option>
-          <option value="hybrid">Hybrid</option>
-          <option value="electric">Electric</option>
-          <option value="diesel">Diesel</option>
-        </select>
+      <div class="result-card wide">
+        <h3>What To Do Next</h3>
+        <p id="nextStep"></p>
       </div>
 
-      <div>
-        <label>Drivetrain</label>
-        <select id="drivetrain">
-          <option value="unknown">Not Sure</option>
-          <option value="fwd">FWD</option>
-          <option value="rwd">RWD</option>
-          <option value="awd">AWD</option>
-          <option value="4wd">4WD</option>
-        </select>
+      <div class="result-card wide">
+        <h3>What To Ask The Mechanic</h3>
+        <ul id="mechanicQuestions"></ul>
       </div>
 
-      <div>
-        <label>Mileage</label>
-        <input type="number" id="mileage" placeholder="Example: 84215">
-      </div>
+      <p class="disclaimer">
+        FixSmart is not a final diagnosis. A real mechanic still needs to inspect the vehicle with tools road testing and physical checks.
+      </p>
+    </section>
 
-    </div>
-  </div>
+  </main>
 
-  <div class="box">
-    <h2>Problem Details</h2>
-
-    <div class="grid">
-
-      <div class="full">
-        <label>Problem Area</label>
-        <select id="category"></select>
-      </div>
-
-      <div class="full">
-        <label>Main Symptom</label>
-        <select id="symptom"></select>
-      </div>
-
-      <div class="full">
-        <label>When does it happen?</label>
-        <select id="condition"></select>
-      </div>
-
-      <div class="full">
-        <label>Extra Details</label>
-        <textarea id="notes" placeholder="Describe your issue"></textarea>
-      </div>
-
-    </div>
-
-    <button id="analyzeBtn">Analyze Issue</button>
-  </div>
-
-</section>
-
-<section class="mechanic-box">
-
-  <div class="mechanic-top">
-    <p class="tag">Trusted mechanic request</p>
-
-    <h2>Need a trusted mechanic near you?</h2>
-
-    <p>
-      Submit your information and FixSmart can help connect you with a trusted local repair shop based on your vehicle issue and location.
-    </p>
-  </div>
-
-  <form name="trusted-mechanic" method="POST" data-netlify="true">
-
-    <input type="hidden" name="form-name" value="trusted-mechanic">
-
-    <div class="grid">
-
-      <div>
-        <label>Full Name</label>
-        <input type="text" name="name" required>
-      </div>
-
-      <div>
-        <label>Email</label>
-        <input type="email" name="email" required>
-      </div>
-
-      <div>
-        <label>Phone Number</label>
-        <input type="tel" name="phone" required>
-      </div>
-
-      <div>
-        <label>ZIP Code</label>
-        <input type="text" name="zip" required>
-      </div>
-
-      <div class="full">
-        <label>Vehicle Issue</label>
-        <textarea name="issue"></textarea>
-      </div>
-
-    </div>
-
-    <button type="submit">Find A Trusted Mechanic</button>
-
-  </form>
-
-</section>
-
-<script src="assets/diagnostic-data.js"></script>
-<script src="assets/app.js"></script>
-
+  <script src="assets/app.js"></script>
 </body>
 </html>
