@@ -1,188 +1,64 @@
-const API_BASE = "https://vpic.nhtsa.dot.gov/api/vehicles";
-
 const yearEl = document.getElementById("year");
 const makeEl = document.getElementById("make");
 const modelEl = document.getElementById("model");
-const categoryEl = document.getElementById("category");
-const symptomEl = document.getElementById("symptom");
-const conditionEl = document.getElementById("condition");
-const analyzeBtn = document.getElementById("analyzeBtn");
 
 const fallbackMakes = [
-  "Acura", "Alfa Romeo", "Aston Martin", "Audi", "Bentley", "BMW", "Bugatti", "Buick",
-  "Cadillac", "Chevrolet", "Chrysler", "Dodge", "Ferrari", "Fiat", "Ford", "Genesis",
-  "GMC", "Honda", "Hyundai", "Infiniti", "Jaguar", "Jeep", "Kia", "Lamborghini",
-  "Land Rover", "Lexus", "Lincoln", "Lotus", "Maserati", "Mazda", "McLaren",
-  "Mercedes-Benz", "Mini", "Mitsubishi", "Nissan", "Polestar", "Porsche", "Ram",
-  "Rivian", "Rolls-Royce", "Subaru", "Tesla", "Toyota", "Volkswagen", "Volvo"
+  "Acura", "Alfa Romeo", "Aston Martin", "Audi", "BMW", "Buick",
+  "Cadillac", "Chevrolet", "Chrysler", "Dodge", "Ferrari", "Ford",
+  "Genesis", "GMC", "Honda", "Hyundai", "Infiniti", "Jaguar", "Jeep",
+  "Kia", "Lexus", "Lincoln", "Mazda", "Mercedes-Benz", "Mini",
+  "Mitsubishi", "Nissan", "Ram", "Subaru", "Tesla", "Toyota",
+  "Volkswagen", "Volvo"
 ];
 
 const fallbackModels = {
-  "Ford": ["Mustang", "F-150", "Explorer", "Escape", "Bronco", "Ranger", "Edge"],
-  "Chevrolet": ["Camaro", "Corvette", "Silverado", "Tahoe", "Malibu", "Equinox", "Colorado"],
-  "Toyota": ["Camry", "Corolla", "Tacoma", "Tundra", "RAV4", "Highlander", "4Runner"],
-  "Honda": ["Civic", "Accord", "CR-V", "Pilot", "Odyssey", "HR-V", "Ridgeline"],
-  "Nissan": ["Altima", "Sentra", "Maxima", "Rogue", "Pathfinder", "Frontier", "Titan"],
-  "BMW": ["330i", "430i", "540i", "M3", "M4", "X3", "X5", "X7"],
-  "Mercedes-Benz": ["C-Class", "E-Class", "S-Class", "GLA", "GLC", "GLE", "GLS"],
-  "Audi": ["A3", "A4", "A5", "A6", "Q3", "Q5", "Q7", "Q8"],
-  "Lexus": ["IS", "ES", "GS", "LS", "NX", "RX", "GX", "LX"],
-  "Hyundai": ["Elantra", "Sonata", "Tucson", "Santa Fe", "Palisade", "Kona"],
-  "Kia": ["Forte", "K5", "Soul", "Sportage", "Sorento", "Telluride"],
-  "Jeep": ["Wrangler", "Grand Cherokee", "Cherokee", "Compass", "Gladiator", "Renegade"],
-  "Dodge": ["Charger", "Challenger", "Durango", "Journey"],
-  "Tesla": ["Model 3", "Model S", "Model X", "Model Y", "Cybertruck"]
+  Ford: ["Mustang", "F-150", "Explorer", "Escape", "Bronco", "Ranger"],
+  Chevrolet: ["Camaro", "Corvette", "Silverado", "Tahoe", "Malibu"],
+  Toyota: ["Camry", "Corolla", "Tacoma", "Tundra", "RAV4"],
+  Honda: ["Civic", "Accord", "CR-V", "Pilot", "Odyssey"],
+  Nissan: ["Altima", "Sentra", "Maxima", "Rogue", "Pathfinder"],
+  BMW: ["330i", "430i", "540i", "M3", "M4", "X3", "X5"],
+  "Mercedes-Benz": ["C-Class", "E-Class", "S-Class", "GLA", "GLE"],
+  Audi: ["A3", "A4", "A5", "Q3", "Q5", "Q7"],
+  Lexus: ["IS", "ES", "GS", "RX", "NX"],
+  Hyundai: ["Elantra", "Sonata", "Tucson", "Santa Fe"],
+  Kia: ["Forte", "K5", "Sportage", "Sorento", "Telluride"],
+  Jeep: ["Wrangler", "Grand Cherokee", "Cherokee", "Compass"],
+  Dodge: ["Charger", "Challenger", "Durango", "Journey"],
+  Tesla: ["Model 3", "Model S", "Model X", "Model Y"]
 };
 
-const diagnosticTree = {
-  "Wheels & Tires": {
-    symptoms: ["Rear wheel noise", "Front wheel noise", "Humming while driving", "Grinding noise", "Vibration at highway speed", "Uneven tire wear", "Clicking while turning", "Tire rubbing"],
-    conditions: ["At highway speed", "While turning", "While braking", "While accelerating", "At low speed", "Constantly", "Over bumps"],
-    causes: ["Wheel bearing", "Cupped tire", "Brake dust shield rubbing", "Brake rotor or pads", "Rear differential noise"]
-  },
-  "Brakes": {
-    symptoms: ["Squeaking when braking", "Grinding when braking", "Brake vibration", "Soft brake pedal", "Brake light on", "Car pulls when braking"],
-    conditions: ["While braking", "At low speed", "At highway speed", "After rain", "Constantly"],
-    causes: ["Brake pads", "Brake rotors", "Sticking caliper", "Brake fluid or hydraulic issue"]
-  },
-  "Suspension": {
-    symptoms: ["Clunking over bumps", "Squeaking suspension", "Vehicle pulls", "Loose feeling", "Bouncy ride", "Knocking noise"],
-    conditions: ["Over bumps", "While turning", "At low speed", "Highway speed", "Braking", "Constantly"],
-    causes: ["Sway bar links", "Struts or shocks", "Control arm bushing", "Ball joint or tie rod"]
-  },
-  "Engine": {
-    symptoms: ["Check engine light", "Rough idle", "Stuttering under throttle", "Oil smell", "White smoke", "Overheating", "Loss of power"],
-    conditions: ["Cold start", "At idle", "While accelerating", "After driving", "Randomly", "Constantly"],
-    causes: ["Spark plugs or coils", "Vacuum or boost leak", "Oil leak", "Cooling system issue"]
-  },
-  "Transmission": {
-    symptoms: ["Hard shifting", "Delayed acceleration", "Slipping", "Whining noise", "Fluid leak", "Jerking"],
-    conditions: ["Cold start", "While accelerating", "At highway speed", "Stop and go traffic", "Randomly"],
-    causes: ["Low transmission fluid", "Shift solenoid", "Torque converter", "Transmission mount"]
-  },
-  "AC & Heating": {
-    symptoms: ["AC not blowing cold", "Weak airflow", "AC clicking noise", "Heat not working", "Bad smell from vents", "Only one side cold"],
-    conditions: ["At idle", "While driving", "Only when hot outside", "Randomly", "Constantly"],
-    causes: ["Low refrigerant", "AC leak", "Compressor", "Blend door actuator"]
-  },
-  "Electrical": {
-    symptoms: ["Car will not start", "Battery dies", "Lights flicker", "Sensor warning", "Window not working", "Random electrical issue"],
-    conditions: ["Cold start", "After sitting", "While driving", "Randomly", "Constantly"],
-    causes: ["Weak battery", "Alternator", "Bad ground or wiring", "Fuse or relay"]
-  },
-  "Cooling System": {
-    symptoms: ["Overheating", "Coolant leak", "Sweet smell", "Temperature rises at idle", "No cabin heat", "Fan running loud"],
-    conditions: ["At idle", "While driving", "After parking", "Hot weather", "Constantly"],
-    causes: ["Coolant leak", "Thermostat", "Water pump", "Cooling fan"]
-  }
-};
+function loadYears() {
+  const currentYear = new Date().getFullYear();
 
-function option(value, label = value) {
-  return `<option value="${String(value).replaceAll('"', "&quot;")}">${label}</option>`;
-}
-
-function populateYears() {
-  yearEl.innerHTML = '<option value="">Select year</option>';
-
-  const nextYear = new Date().getFullYear() + 1;
-
-  for (let year = nextYear; year >= 1985; year--) {
-    yearEl.innerHTML += option(year);
+  for (let year = currentYear + 1; year >= 1990; year--) {
+    const option = document.createElement("option");
+    option.value = year;
+    option.textContent = year;
+    yearEl.appendChild(option);
   }
 }
 
-async function getJson(url) {
-  const response = await fetch(url);
-
-  if (!response.ok) {
-    throw new Error("Vehicle database request failed");
-  }
-
-  return response.json();
+function loadMakes() {
+  fallbackMakes.forEach(make => {
+    const option = document.createElement("option");
+    option.value = make;
+    option.textContent = make;
+    makeEl.appendChild(option);
+  });
 }
 
-async function loadMakes() {
-  const year = yearEl.value;
-
-  makeEl.innerHTML = '<option value="">Loading makes...</option>';
-  modelEl.innerHTML = '<option value="">Select make first</option>';
-
-  if (!year) {
-    makeEl.innerHTML = '<option value="">Select year first</option>';
-    return;
-  }
-
-  try {
-    const url = `${API_BASE}/GetMakesForVehicleType/car?format=json`;
-    const data = await getJson(url);
-
-    const makes = [...new Set(
-      data.Results
-        .map(item => item.MakeName)
-        .filter(Boolean)
-    )].sort();
-
-    makeEl.innerHTML = '<option value="">Select make</option>' + makes.map(make => option(make)).join("");
-  } catch (error) {
-    makeEl.innerHTML = '<option value="">Select make</option>' + fallbackMakes.map(make => option(make)).join("");
-  }
-}
-
-async function loadModels() {
-  const year = yearEl.value;
+function loadModels() {
   const make = makeEl.value;
+  modelEl.innerHTML = `<option value="">Select model</option>`;
 
-  modelEl.innerHTML = '<option value="">Loading models...</option>';
+  const models = fallbackModels[make] || ["Base Model", "Sport", "Limited", "Premium"];
 
-  if (!year || !make) {
-    modelEl.innerHTML = '<option value="">Select make first</option>';
-    return;
-  }
-
-  try {
-    const url = `${API_BASE}/GetModelsForMakeYear/make/${encodeURIComponent(make)}/modelyear/${year}/vehicleType/car?format=json`;
-    const data = await getJson(url);
-
-    const models = [...new Set(
-      data.Results
-        .map(item => item.Model_Name)
-        .filter(Boolean)
-    )].sort();
-
-    if (!models.length) {
-      throw new Error("No models found");
-    }
-
-    modelEl.innerHTML = '<option value="">Select model</option>' + models.map(model => option(model)).join("");
-  } catch (error) {
-    const models = fallbackModels[make] || ["Base", "Sedan", "SUV", "Truck", "Coupe", "Hatchback", "Van"];
-    modelEl.innerHTML = '<option value="">Select model</option>' + models.map(model => option(model)).join("");
-  }
-}
-
-function populateDiagnosticCategories() {
-  categoryEl.innerHTML = "";
-
-  Object.keys(diagnosticTree).forEach(category => {
-    categoryEl.innerHTML += option(category);
-  });
-
-  updateSymptoms();
-}
-
-function updateSymptoms() {
-  const selectedCategory = categoryEl.value;
-  const data = diagnosticTree[selectedCategory];
-
-  symptomEl.innerHTML = "";
-  conditionEl.innerHTML = "";
-
-  data.symptoms.forEach(symptom => {
-    symptomEl.innerHTML += option(symptom);
-  });
-
-  data.conditions.forEach(condition => {
-    conditionEl.innerHTML += option(condition);
+  models.forEach(model => {
+    const option = document.createElement("option");
+    option.value = model;
+    option.textContent = model;
+    modelEl.appendChild(option);
   });
 }
 
@@ -190,93 +66,176 @@ function analyzeIssue() {
   const year = document.getElementById("year").value;
   const make = document.getElementById("make").value;
   const model = document.getElementById("model").value;
+  const powertrain = document.getElementById("powertrain").value;
   const drivetrain = document.getElementById("drivetrain").value;
-  const mileage = document.getElementById("mileage").value;
+  const mileage = Number(document.getElementById("mileage").value);
 
-  const problemArea = document.getElementById("problem-area").value;
-  const mainSymptom = document.getElementById("main-symptom").value;
+  const problemArea = document.getElementById("problemArea").value;
+  const symptom = document.getElementById("symptom").value;
   const condition = document.getElementById("condition").value;
   const details = document.getElementById("details").value;
 
+  if (!year || !make || !model || !problemArea || !symptom || !condition) {
+    alert("Please fill out the vehicle and problem details first.");
+    return;
+  }
+
   let causes = [];
+  let lowPrice = 100;
+  let highPrice = 400;
+  let safeToDrive = "Use caution. Avoid long drives until inspected.";
+  let urgency = "Medium";
   let nextStep = "";
+  let questions = [];
+
+  if (problemArea === "Engine") {
+    causes = ["Spark plugs", "Ignition coils", "Vacuum leak", "Fuel delivery issue", "Sensor fault"];
+    lowPrice = 120;
+    highPrice = 950;
+    urgency = "Medium to High";
+    safeToDrive = "Drive only if the car feels normal. Do not drive if it shakes badly overheats smokes or loses power.";
+    nextStep = "Ask for an engine scan misfire check and visual inspection before replacing parts.";
+    questions = [
+      "Are there stored engine codes?",
+      "Is the issue a misfire fuel problem air leak or sensor problem?",
+      "Can you show me the test results before replacing parts?"
+    ];
+  }
 
   if (problemArea === "Transmission") {
-    causes = [
-      "Low transmission fluid",
-      "Shift solenoid",
-      "Torque converter",
-      "Transmission mount"
+    causes = ["Low transmission fluid", "Shift solenoid", "Torque converter", "Transmission mount", "Internal transmission wear"];
+    lowPrice = 180;
+    highPrice = 2800;
+    urgency = "High";
+    safeToDrive = "Not recommended if it slips jerks leaks badly or struggles to shift. Driving can make the repair more expensive.";
+    nextStep = "Ask the shop to inspect fluid level leaks mounts and scan transmission codes first.";
+    questions = [
+      "Is the fluid low burnt or leaking?",
+      "Are there transmission codes?",
+      "Is this electrical hydraulic or internal transmission damage?"
     ];
-
-    nextStep =
-      "Ask the shop to inspect the transmission system first instead of guessing randomly.";
   }
 
-  else if (problemArea === "Engine") {
-    causes = [
-      "Spark plugs",
-      "Ignition coils",
-      "Vacuum leak",
-      "Fuel delivery issue"
+  if (problemArea === "Brakes") {
+    causes = ["Brake pads", "Rotors", "Caliper issue", "Brake fluid leak", "ABS sensor"];
+    lowPrice = 150;
+    highPrice = 900;
+    urgency = "High";
+    safeToDrive = "Do not drive if the pedal feels soft the car pulls hard grinding is loud or brake warning light is on.";
+    nextStep = "Request a brake inspection immediately if stopping distance feels worse.";
+    questions = [
+      "Are the pads rotors and calipers still safe?",
+      "Is there a brake fluid leak?",
+      "Can you measure the pad thickness?"
     ];
-
-    nextStep =
-      "Ask for a full engine diagnostic and scan for stored codes.";
   }
 
-  else if (problemArea === "Brakes") {
-    causes = [
-      "Brake pads",
-      "Warped rotors",
-      "Brake fluid issue",
-      "Caliper problem"
+  if (problemArea === "AC") {
+    causes = ["Low refrigerant", "AC compressor", "Blend door actuator", "Condenser leak", "Blower motor"];
+    lowPrice = 120;
+    highPrice = 1400;
+    urgency = "Low to Medium";
+    safeToDrive = "Usually safe to drive unless the windows fog badly or the belt system is making noise.";
+    nextStep = "Ask for an AC pressure test leak check and compressor operation test.";
+    questions = [
+      "Is the refrigerant low because of a leak?",
+      "Is the compressor engaging?",
+      "Can you confirm the leak before recharging it?"
     ];
-
-    nextStep =
-      "Request a brake inspection before driving long distances.";
   }
 
-  else {
-    causes = [
-      "Further inspection needed",
-      "Possible sensor issue",
-      "Wear and tear component",
-      "Mechanical diagnosis recommended"
+  if (problemArea === "Suspension") {
+    causes = ["Struts", "Shocks", "Control arms", "Ball joints", "Wheel bearing"];
+    lowPrice = 180;
+    highPrice = 1600;
+    urgency = "Medium to High";
+    safeToDrive = "Avoid highway driving if the car shakes pulls clunks loudly or feels unstable.";
+    nextStep = "Ask for a suspension and steering inspection before alignment.";
+    questions = [
+      "Is there play in the ball joints tie rods or wheel bearings?",
+      "Are the struts or shocks leaking?",
+      "Does it need alignment after the repair?"
     ];
-
-    nextStep =
-      "Have the vehicle inspected by a qualified mechanic.";
   }
 
-  alert(`
-FixSmart Diagnostic Preview
+  if (problemArea === "Electrical") {
+    causes = ["Battery", "Alternator", "Starter", "Fuse", "Wiring issue", "Module fault"];
+    lowPrice = 80;
+    highPrice = 1200;
+    urgency = "Medium";
+    safeToDrive = "Safe only if the car starts normally and no major warning lights are active.";
+    nextStep = "Ask for a battery alternator starter and charging system test.";
+    questions = [
+      "Is the battery actually bad or is the alternator not charging?",
+      "Are there blown fuses or wiring issues?",
+      "Can you test the charging voltage?"
+    ];
+  }
 
-Vehicle:
-${year} ${make} ${model}
+  if (problemArea === "Cooling") {
+    causes = ["Coolant leak", "Radiator", "Thermostat", "Water pump", "Cooling fan"];
+    lowPrice = 120;
+    highPrice = 1300;
+    urgency = "High";
+    safeToDrive = "Do not drive if the temperature gauge rises or coolant is leaking heavily. Overheating can destroy the engine.";
+    nextStep = "Ask for a pressure test coolant leak inspection and fan operation test.";
+    questions = [
+      "Where is the coolant leaking from?",
+      "Is the thermostat opening correctly?",
+      "Are the cooling fans turning on?"
+    ];
+  }
 
-Mileage:
-${mileage || "Not entered"}
+  if (symptom === "Fluid leak") {
+    urgency = "Medium to High";
+    highPrice += 300;
+    safeToDrive = "Check the fluid type first. Do not drive if it is brake fluid coolant or transmission fluid leaking heavily.";
+  }
 
-Drivetrain:
-${drivetrain}
+  if (symptom === "Overheating") {
+    urgency = "High";
+    highPrice += 500;
+    safeToDrive = "Do not drive while overheating. Pull over and let it cool down.";
+  }
 
-Problem Area:
-${problemArea}
+  if (symptom === "No start") {
+    urgency = "High";
+    lowPrice += 50;
+    highPrice += 400;
+    safeToDrive = "Not drivable until diagnosed.";
+  }
 
-Main Symptom:
-${mainSymptom}
+  if (mileage > 120000) {
+    lowPrice += 100;
+    highPrice += 500;
+  }
 
-Condition:
-${condition}
+  if (powertrain === "Electric") {
+    lowPrice += 150;
+    highPrice += 700;
+  }
 
-Extra Details:
-${details || "No extra details provided"}
+  document.getElementById("result").classList.remove("hidden");
 
-Most Common Causes:
-• ${causes.join("\n• ")}
+  document.getElementById("causesList").innerHTML = causes.map(cause => `<li>${cause}</li>`).join("");
 
-Recommended Next Step:
-${nextStep}
-  `);
+  document.getElementById("priceRange").textContent =
+    `$${lowPrice.toLocaleString()} - $${highPrice.toLocaleString()} estimated range`;
+
+  document.getElementById("safeToDrive").textContent = safeToDrive;
+
+  document.getElementById("urgency").textContent = urgency;
+
+  document.getElementById("nextStep").textContent =
+    `${year} ${make} ${model} with ${problemArea.toLowerCase()} symptoms should be inspected based on the symptom condition and mileage. ${nextStep}`;
+
+  document.getElementById("mechanicQuestions").innerHTML =
+    questions.map(question => `<li>${question}</li>`).join("");
+
+  document.getElementById("result").scrollIntoView({ behavior: "smooth" });
 }
+
+makeEl.addEventListener("change", loadModels);
+
+loadYears();
+loadMakes();
