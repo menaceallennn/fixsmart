@@ -2,30 +2,324 @@ const yearEl = document.getElementById("year");
 const makeEl = document.getElementById("make");
 const modelEl = document.getElementById("model");
 
-const fallbackMakes = [
-  "Acura", "Alfa Romeo", "Aston Martin", "Audi", "BMW", "Buick",
-  "Cadillac", "Chevrolet", "Chrysler", "Dodge", "Ferrari", "Ford",
-  "Genesis", "GMC", "Honda", "Hyundai", "Infiniti", "Jaguar", "Jeep",
-  "Kia", "Lexus", "Lincoln", "Mazda", "Mercedes-Benz", "Mini",
-  "Mitsubishi", "Nissan", "Ram", "Subaru", "Tesla", "Toyota",
-  "Volkswagen", "Volvo"
-];
-
 const fallbackModels = {
-  Ford: ["Mustang", "F-150", "Explorer", "Escape", "Bronco", "Ranger"],
-  Chevrolet: ["Camaro", "Corvette", "Silverado", "Tahoe", "Malibu"],
-  Toyota: ["Camry", "Corolla", "Tacoma", "Tundra", "RAV4"],
-  Honda: ["Civic", "Accord", "CR-V", "Pilot", "Odyssey"],
-  Nissan: ["Altima", "Sentra", "Maxima", "Rogue", "Pathfinder"],
-  BMW: ["330i", "430i", "540i", "M3", "M4", "X3", "X5"],
-  "Mercedes-Benz": ["C-Class", "E-Class", "S-Class", "GLA", "GLE"],
-  Audi: ["A3", "A4", "A5", "Q3", "Q5", "Q7"],
-  Lexus: ["IS", "ES", "GS", "RX", "NX"],
-  Hyundai: ["Elantra", "Sonata", "Tucson", "Santa Fe"],
-  Kia: ["Forte", "K5", "Sportage", "Sorento", "Telluride"],
-  Jeep: ["Wrangler", "Grand Cherokee", "Cherokee", "Compass"],
-  Dodge: ["Charger", "Challenger", "Durango", "Journey"],
-  Tesla: ["Model 3", "Model S", "Model X", "Model Y"]
+
+  Ford: [
+    "Fiesta",
+    "Focus",
+    "Fusion",
+    "EcoSport",
+    "Escape",
+    "Edge",
+    "Explorer",
+    "Expedition",
+    "Bronco",
+    "Bronco Sport",
+    "F-150",
+    "Super Duty",
+    "F-250",
+    "F-350",
+    "Ranger",
+    "Maverick",
+    "Mustang",
+    "Mustang Mach-E",
+    "Transit",
+    "Transit Connect"
+  ],
+
+  Chevrolet: [
+    "Spark",
+    "Malibu",
+    "Impala",
+    "Camaro",
+    "Corvette",
+    "Cruze",
+    "Equinox",
+    "Traverse",
+    "Tahoe",
+    "Suburban",
+    "Trailblazer",
+    "Blazer",
+    "Silverado",
+    "Colorado"
+  ],
+
+  Toyota: [
+    "Corolla",
+    "Camry",
+    "Avalon",
+    "Prius",
+    "GR86",
+    "Supra",
+    "Tacoma",
+    "Tundra",
+    "4Runner",
+    "RAV4",
+    "Highlander",
+    "Sequoia",
+    "Land Cruiser",
+    "Venza",
+    "bZ4X"
+  ],
+
+  Honda: [
+    "Civic",
+    "Accord",
+    "Fit",
+    "Insight",
+    "CR-V",
+    "HR-V",
+    "Pilot",
+    "Passport",
+    "Ridgeline",
+    "Odyssey"
+  ],
+
+  Nissan: [
+    "Versa",
+    "Sentra",
+    "Altima",
+    "Maxima",
+    "370Z",
+    "GT-R",
+    "Rogue",
+    "Murano",
+    "Pathfinder",
+    "Armada",
+    "Frontier",
+    "Titan",
+    "Leaf"
+  ],
+
+  Dodge: [
+    "Charger",
+    "Challenger",
+    "Durango",
+    "Journey",
+    "Hornet"
+  ],
+
+  Jeep: [
+    "Wrangler",
+    "Gladiator",
+    "Cherokee",
+    "Grand Cherokee",
+    "Compass",
+    "Renegade",
+    "Wagoneer",
+    "Grand Wagoneer"
+  ],
+
+  BMW: [
+    "228i",
+    "330i",
+    "430i",
+    "540i",
+    "740i",
+    "M2",
+    "M3",
+    "M4",
+    "M5",
+    "X1",
+    "X3",
+    "X5",
+    "X6",
+    "X7",
+    "i4",
+    "i7",
+    "iX"
+  ],
+
+  Mercedes-Benz: [
+    "A-Class",
+    "C-Class",
+    "E-Class",
+    "S-Class",
+    "CLA",
+    "CLS",
+    "GLA",
+    "GLB",
+    "GLC",
+    "GLE",
+    "GLS",
+    "G-Class",
+    "EQE",
+    "EQS"
+  ],
+
+  Audi: [
+    "A3",
+    "A4",
+    "A5",
+    "A6",
+    "A7",
+    "A8",
+    "Q3",
+    "Q5",
+    "Q7",
+    "Q8",
+    "e-tron",
+    "RS5",
+    "R8"
+  ],
+
+  Hyundai: [
+    "Accent",
+    "Elantra",
+    "Sonata",
+    "Veloster",
+    "Kona",
+    "Tucson",
+    "Santa Fe",
+    "Palisade",
+    "IONIQ 5",
+    "IONIQ 6"
+  ],
+
+  Kia: [
+    "Rio",
+    "Forte",
+    "K5",
+    "Stinger",
+    "Soul",
+    "Seltos",
+    "Sportage",
+    "Sorento",
+    "Telluride",
+    "EV6"
+  ],
+
+  Lexus: [
+    "IS",
+    "ES",
+    "GS",
+    "LS",
+    "RC",
+    "LC",
+    "UX",
+    "NX",
+    "RX",
+    "GX",
+    "LX",
+    "RZ"
+  ],
+
+  Subaru: [
+    "Impreza",
+    "WRX",
+    "Legacy",
+    "Crosstrek",
+    "Forester",
+    "Outback",
+    "Ascent",
+    "BRZ"
+  ],
+
+  Volkswagen: [
+    "Jetta",
+    "Passat",
+    "Golf",
+    "GTI",
+    "Arteon",
+    "Taos",
+    "Tiguan",
+    "Atlas",
+    "ID.4"
+  ],
+
+  Tesla: [
+    "Model 3",
+    "Model S",
+    "Model X",
+    "Model Y",
+    "Cybertruck",
+    "Roadster"
+  ],
+
+  Acura: [
+    "ILX",
+    "TLX",
+    "Integra",
+    "RDX",
+    "MDX",
+    "NSX"
+  ],
+
+  Infiniti: [
+    "Q50",
+    "Q60",
+    "QX50",
+    "QX60",
+    "QX80"
+  ],
+
+  Mazda: [
+    "Mazda3",
+    "Mazda6",
+    "CX-30",
+    "CX-5",
+    "CX-50",
+    "CX-90",
+    "MX-5 Miata"
+  ],
+
+  GMC: [
+    "Canyon",
+    "Sierra",
+    "Terrain",
+    "Acadia",
+    "Yukon",
+    "Hummer EV"
+  ],
+
+  Volvo: [
+    "S60",
+    "S90",
+    "XC40",
+    "XC60",
+    "XC90",
+    "C40 Recharge"
+  ],
+
+  Porsche: [
+    "718 Cayman",
+    "718 Boxster",
+    "911",
+    "Panamera",
+    "Macan",
+    "Cayenne",
+    "Taycan"
+  ],
+
+  Ferrari: [
+    "488",
+    "F8",
+    "296 GTB",
+    "Roma",
+    "SF90",
+    "Purosangue"
+  ],
+
+  Lamborghini: [
+    "Huracan",
+    "Aventador",
+    "Revuelto",
+    "Urus"
+  ],
+
+  Bentley: [
+    "Continental GT",
+    "Flying Spur",
+    "Bentayga"
+  ],
+
+  Rolls-Royce: [
+    "Ghost",
+    "Phantom",
+    "Cullinan",
+    "Spectre"
+  ]
+
 };
 
 function loadYears() {
