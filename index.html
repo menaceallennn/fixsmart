@@ -8,196 +8,223 @@
 </head>
 <body>
 
-  <header class="header">
-    <div class="logo">FixSmart</div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="#diagnostic">Diagnostic</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
+<header class="header">
+  <div class="logo">FixSmart</div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="#diagnostic">Diagnostic</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
 
-  <main>
+<main>
 
-    <section class="hero">
-      <p class="tag">Professional vehicle diagnostic assistant</p>
-      <h1>Know what might be wrong before the mechanic tells you.</h1>
-      <p class="hero-text">
-        FixSmart helps drivers understand possible repair causes estimated pricing urgency safe to drive status and what to ask a repair shop before paying for diagnostics.
-      </p>
-      <a href="#diagnostic" class="main-btn">Start Diagnostic</a>
-    </section>
+<section class="hero">
+  <p class="tag">Smart car repair guidance</p>
+  <h1>Understand your car problem before paying the shop.</h1>
+  <p class="hero-text">
+    FixSmart gives you a simple repair report with possible causes price range urgency safe to drive advice and a mechanic quote checker.
+  </p>
+  <a href="#diagnostic" class="main-btn">Start Diagnostic</a>
+</section>
 
-    <section class="features">
-      <div class="feature-card">
-        <h3>Vehicle based</h3>
-        <p>Year make model drivetrain and mileage filtering.</p>
+<section id="diagnostic" class="diagnostic-section">
+
+  <div class="panel">
+    <h2>Vehicle Info</h2>
+
+    <div class="form-grid">
+      <label>Year
+        <select id="year"></select>
+      </label>
+
+      <label>Make
+        <select id="make"></select>
+      </label>
+
+      <label>Model
+        <select id="model"></select>
+      </label>
+
+      <label>Powertrain
+        <select id="powertrain">
+          <option value="Gas">Gas</option>
+          <option value="Hybrid">Hybrid</option>
+          <option value="Electric">Electric</option>
+          <option value="Diesel">Diesel</option>
+        </select>
+      </label>
+
+      <label>Drivetrain
+        <select id="drivetrain">
+          <option value="Not sure">Not sure</option>
+          <option value="FWD">FWD</option>
+          <option value="RWD">RWD</option>
+          <option value="AWD">AWD</option>
+          <option value="4WD">4WD</option>
+        </select>
+      </label>
+
+      <label>Mileage
+        <input id="mileage" type="number" placeholder="Example 85000" />
+      </label>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>Issue Info</h2>
+
+    <div class="form-grid">
+      <label>Problem Area
+        <select id="problemArea">
+          <option value="">Select area</option>
+          <option value="Engine">Engine</option>
+          <option value="Transmission">Transmission</option>
+          <option value="Brakes">Brakes</option>
+          <option value="AC">AC / Heating</option>
+          <option value="Suspension">Suspension</option>
+          <option value="Electrical">Electrical</option>
+          <option value="Cooling">Cooling System</option>
+        </select>
+      </label>
+
+      <label>Main Symptom
+        <select id="symptom">
+          <option value="">Select symptom</option>
+          <option value="Noise">Noise</option>
+          <option value="Fluid leak">Fluid leak</option>
+          <option value="Warning light">Warning light</option>
+          <option value="Overheating">Overheating</option>
+          <option value="Vibration">Vibration</option>
+          <option value="Weak performance">Weak performance</option>
+          <option value="No start">No start</option>
+          <option value="Bad smell">Bad smell</option>
+        </select>
+      </label>
+
+      <label>When does it happen?
+        <select id="condition">
+          <option value="">Select condition</option>
+          <option value="At startup">At startup</option>
+          <option value="At idle">At idle</option>
+          <option value="When accelerating">When accelerating</option>
+          <option value="When braking">When braking</option>
+          <option value="At highway speed">At highway speed</option>
+          <option value="All the time">All the time</option>
+        </select>
+      </label>
+
+      <label>Mechanic Quote
+        <input id="mechanicQuote" type="number" placeholder="Example 750" />
+      </label>
+    </div>
+
+    <label>Extra Details
+      <textarea id="details" placeholder="Example car shakes when accelerating and check engine light is on"></textarea>
+    </label>
+
+    <button class="main-btn" onclick="analyzeIssue()">Analyze Issue</button>
+  </div>
+
+</section>
+
+<section id="result" class="report hidden">
+
+  <div class="report-header">
+    <div>
+      <p class="tag">FixSmart Report</p>
+      <h2 id="reportTitle">Your Vehicle Report</h2>
+      <p id="reportSummary"></p>
+    </div>
+
+    <div class="price-circle">
+      <div class="circle-inner">
+        <span id="circleLabel">Estimate</span>
+        <strong id="circlePrice">$0</strong>
+        <small id="circleStatus">Price Guide</small>
       </div>
-      <div class="feature-card">
-        <h3>Better estimates</h3>
-        <p>More realistic repair matching and cost ranges.</p>
-      </div>
-      <div class="feature-card">
-        <h3>Shop preparation</h3>
-        <p>Know what to ask before inspection.</p>
-      </div>
-    </section>
+    </div>
+  </div>
 
-    <section id="diagnostic" class="diagnostic-section">
+  <div class="report-grid">
+    <div class="report-card">
+      <h3>Possible Problem</h3>
+      <p id="simpleProblem"></p>
+    </div>
 
-      <div class="panel">
-        <h2>Vehicle Information</h2>
+    <div class="report-card">
+      <h3>Estimated Price Range</h3>
+      <p id="priceRange"></p>
+    </div>
 
-        <div class="form-grid">
-          <label>
-            Year
-            <select id="year">
-              <option value="">Select year</option>
-            </select>
-          </label>
+    <div class="report-card">
+      <h3>Safe To Drive?</h3>
+      <p id="safeToDrive"></p>
+    </div>
 
-          <label>
-            Make
-            <select id="make">
-              <option value="">Select make</option>
-            </select>
-          </label>
+    <div class="report-card">
+      <h3>Urgency</h3>
+      <p id="urgency"></p>
+    </div>
+  </div>
 
-          <label>
-            Model
-            <select id="model">
-              <option value="">Select model</option>
-            </select>
-          </label>
+  <div class="diagram">
+    <div class="step">
+      <span>1</span>
+      <h4>Describe Issue</h4>
+      <p>You explain what the car is doing.</p>
+    </div>
 
-          <label>
-            Powertrain
-            <select id="powertrain">
-              <option value="Gas">Gas</option>
-              <option value="Hybrid">Hybrid</option>
-              <option value="Electric">Electric</option>
-              <option value="Diesel">Diesel</option>
-            </select>
-          </label>
+    <div class="line"></div>
 
-          <label>
-            Drivetrain
-            <select id="drivetrain">
-              <option value="Not Sure">Not Sure</option>
-              <option value="FWD">FWD</option>
-              <option value="RWD">RWD</option>
-              <option value="AWD">AWD</option>
-              <option value="4WD">4WD</option>
-            </select>
-          </label>
+    <div class="step">
+      <span>2</span>
+      <h4>Check System</h4>
+      <p>FixSmart points to the main area.</p>
+    </div>
 
-          <label>
-            Mileage
-            <input id="mileage" type="number" placeholder="Example: 84215" />
-          </label>
-        </div>
-      </div>
+    <div class="line"></div>
 
-      <div class="panel">
-        <h2>Problem Details</h2>
+    <div class="step">
+      <span>3</span>
+      <h4>Compare Price</h4>
+      <p>You compare the shop quote to the estimate.</p>
+    </div>
+  </div>
 
-        <div class="form-grid">
-          <label>
-            Problem Area
-            <select id="problemArea">
-              <option value="">Select problem area</option>
-              <option value="Engine">Engine</option>
-              <option value="Transmission">Transmission</option>
-              <option value="Brakes">Brakes</option>
-              <option value="AC">AC / Heating</option>
-              <option value="Suspension">Suspension</option>
-              <option value="Electrical">Electrical</option>
-              <option value="Cooling">Cooling System</option>
-            </select>
-          </label>
+  <div class="report-grid two">
+    <div class="report-card">
+      <h3>Most Common Causes</h3>
+      <ul id="causesList"></ul>
+    </div>
 
-          <label>
-            Main Symptom
-            <select id="symptom">
-              <option value="">Select symptom</option>
-              <option value="Noise">Noise</option>
-              <option value="Fluid leak">Fluid leak</option>
-              <option value="Warning light">Warning light</option>
-              <option value="Overheating">Overheating</option>
-              <option value="Vibration">Vibration</option>
-              <option value="Weak performance">Weak performance</option>
-              <option value="No start">No start</option>
-              <option value="Bad smell">Bad smell</option>
-            </select>
-          </label>
+    <div class="report-card">
+      <h3>Mechanic Quote Check</h3>
+      <p id="quoteCheck"></p>
+    </div>
+  </div>
 
-          <label>
-            When does it happen?
-            <select id="condition">
-              <option value="">Select condition</option>
-              <option value="At startup">At startup</option>
-              <option value="At idle">At idle</option>
-              <option value="When accelerating">When accelerating</option>
-              <option value="When braking">When braking</option>
-              <option value="At highway speed">At highway speed</option>
-              <option value="All the time">All the time</option>
-            </select>
-          </label>
-        </div>
+  <div class="report-card wide">
+    <h3>What To Do Next</h3>
+    <p id="nextStep"></p>
+  </div>
 
-        <label>
-          Extra Details
-          <textarea id="details" placeholder="Describe your issue"></textarea>
-        </label>
+  <div class="report-card wide">
+    <h3>What To Ask The Mechanic</h3>
+    <ul id="mechanicQuestions"></ul>
+  </div>
 
-        <button class="main-btn" onclick="analyzeIssue()">Analyze Issue</button>
-      </div>
+  <p class="disclaimer">
+    FixSmart is not a final diagnosis. It helps you prepare before going to a shop. A mechanic still needs to inspect the vehicle.
+  </p>
 
-    </section>
+</section>
 
-    <section id="result" class="result-section hidden">
-      <h2>FixSmart Diagnostic Preview</h2>
+</main>
 
-      <div class="result-grid">
-        <div class="result-card">
-          <h3>Possible Causes</h3>
-          <ul id="causesList"></ul>
-        </div>
-
-        <div class="result-card">
-          <h3>Estimated Price Range</h3>
-          <p id="priceRange"></p>
-        </div>
-
-        <div class="result-card">
-          <h3>Safe To Drive?</h3>
-          <p id="safeToDrive"></p>
-        </div>
-
-        <div class="result-card">
-          <h3>Urgency Level</h3>
-          <p id="urgency"></p>
-        </div>
-      </div>
-
-      <div class="result-card wide">
-        <h3>What To Do Next</h3>
-        <p id="nextStep"></p>
-      </div>
-
-      <div class="result-card wide">
-        <h3>What To Ask The Mechanic</h3>
-        <ul id="mechanicQuestions"></ul>
-      </div>
-
-      <p class="disclaimer">
-        FixSmart is not a final diagnosis. A real mechanic still needs to inspect the vehicle with tools road testing and physical checks.
-      </p>
-    </section>
-
-  </main>
-
-  <script src="assets/app.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
 </body>
 </html>
