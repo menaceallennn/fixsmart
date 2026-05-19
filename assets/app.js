@@ -187,30 +187,96 @@ function updateSymptoms() {
 }
 
 function analyzeIssue() {
-  const category = categoryEl.value;
-  const symptom = symptomEl.value;
-  const condition = conditionEl.value;
-  const year = yearEl.value;
-  const make = makeEl.value;
-  const model = modelEl.value;
-  const mileage = document.getElementById("mileage").value || "not entered";
+  const year = document.getElementById("year").value;
+  const make = document.getElementById("make").value;
+  const model = document.getElementById("model").value;
+  const drivetrain = document.getElementById("drivetrain").value;
+  const mileage = document.getElementById("mileage").value;
 
-  if (!year || !make || !model) {
-    alert("Please select year make and model first.");
-    return;
+  const problemArea = document.getElementById("problem-area").value;
+  const mainSymptom = document.getElementById("main-symptom").value;
+  const condition = document.getElementById("condition").value;
+  const details = document.getElementById("details").value;
+
+  let causes = [];
+  let nextStep = "";
+
+  if (problemArea === "Transmission") {
+    causes = [
+      "Low transmission fluid",
+      "Shift solenoid",
+      "Torque converter",
+      "Transmission mount"
+    ];
+
+    nextStep =
+      "Ask the shop to inspect the transmission system first instead of guessing randomly.";
   }
 
-  const causes = diagnosticTree[category].causes.join(", ");
+  else if (problemArea === "Engine") {
+    causes = [
+      "Spark plugs",
+      "Ignition coils",
+      "Vacuum leak",
+      "Fuel delivery issue"
+    ];
 
-  alert(
-    `FixSmart Diagnostic Preview\\n\\nVehicle: ${year} ${make} ${model}\\nMileage: ${mileage}\\nProblem Area: ${category}\\nSymptom: ${symptom}\\nCondition: ${condition}\\n\\nMost common causes to inspect: ${causes}\\n\\nNext step: Ask the shop to inspect this system first instead of guessing randomly.`
-  );
+    nextStep =
+      "Ask for a full engine diagnostic and scan for stored codes.";
+  }
+
+  else if (problemArea === "Brakes") {
+    causes = [
+      "Brake pads",
+      "Warped rotors",
+      "Brake fluid issue",
+      "Caliper problem"
+    ];
+
+    nextStep =
+      "Request a brake inspection before driving long distances.";
+  }
+
+  else {
+    causes = [
+      "Further inspection needed",
+      "Possible sensor issue",
+      "Wear and tear component",
+      "Mechanical diagnosis recommended"
+    ];
+
+    nextStep =
+      "Have the vehicle inspected by a qualified mechanic.";
+  }
+
+  alert(`
+FixSmart Diagnostic Preview
+
+Vehicle:
+${year} ${make} ${model}
+
+Mileage:
+${mileage || "Not entered"}
+
+Drivetrain:
+${drivetrain}
+
+Problem Area:
+${problemArea}
+
+Main Symptom:
+${mainSymptom}
+
+Condition:
+${condition}
+
+Extra Details:
+${details || "No extra details provided"}
+
+Most Common Causes:
+• ${causes.join("\n• ")}
+
+Recommended Next Step:
+${nextStep}
+  `);
 }
-
-populateYears();
-populateDiagnosticCategories();
-
-yearEl.addEventListener("change", loadMakes);
-makeEl.addEventListener("change", loadModels);
-categoryEl.addEventListener("change", updateSymptoms);
-analyzeBtn.addEventListener("click", analyzeIssue);
