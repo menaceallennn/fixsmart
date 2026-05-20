@@ -4,15 +4,15 @@
 
 :root {
   --bg: #050505;
-  --surface: #0c0c0d;
-  --surface-2: #111113;
-  --line: rgba(255, 255, 255, 0.12);
-  --line-strong: rgba(255, 255, 255, 0.18);
-  --text: #f5f5f5;
-  --muted: #a7a7a7;
-  --muted-2: #777;
-  --red: #e31b23;
-  --red-dark: #b9141b;
+  --surface: #0b0b0c;
+  --surface-2: #101011;
+  --line: rgba(255, 255, 255, 0.11);
+  --line-2: rgba(255, 255, 255, 0.18);
+  --text: #f2f2f2;
+  --muted: #a6a6a6;
+  --muted-2: #777777;
+  --red: #d71920;
+  --red-dark: #a91419;
 }
 
 html {
@@ -21,26 +21,16 @@ html {
 
 body {
   margin: 0;
-  background: var(--bg);
+  background: linear-gradient(180deg, #050505, #080808);
   color: var(--text);
   font-family: Arial, Helvetica, sans-serif;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background:
-    linear-gradient(90deg, rgba(227, 27, 35, 0.08), transparent 35%),
-    radial-gradient(circle at top right, rgba(227, 27, 35, 0.08), transparent 32%);
-  pointer-events: none;
-  z-index: -1;
+  font-size: 15px;
 }
 
 .header {
-  max-width: 1220px;
+  max-width: 1160px;
   margin: 0 auto;
-  padding: 22px 28px;
+  padding: 18px 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -48,9 +38,9 @@ body::before {
 }
 
 .logo {
-  font-size: 1.35rem;
-  font-weight: 800;
-  letter-spacing: -0.03em;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 .logo::first-letter {
@@ -59,14 +49,14 @@ body::before {
 
 nav {
   display: flex;
-  gap: 26px;
+  gap: 22px;
 }
 
 nav a {
   color: var(--muted);
   text-decoration: none;
-  font-size: 0.92rem;
-  font-weight: 700;
+  font-size: 0.88rem;
+  font-weight: 500;
 }
 
 nav a:hover {
@@ -74,55 +64,56 @@ nav a:hover {
 }
 
 main {
-  max-width: 1220px;
+  max-width: 1160px;
   margin: 0 auto;
-  padding: 28px 28px 90px;
+  padding: 22px 24px 70px;
 }
 
 .hero {
-  padding: 88px 0 72px;
+  padding: 58px 0 46px;
   border-bottom: 1px solid var(--line);
 }
 
 .tag {
   color: var(--red);
-  font-size: 0.75rem;
-  font-weight: 800;
+  font-size: 0.68rem;
+  font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  margin: 0 0 18px;
+  margin: 0 0 14px;
 }
 
 .hero h1 {
-  max-width: 980px;
-  margin: 0 0 22px;
-  font-size: clamp(2.8rem, 7vw, 6rem);
-  line-height: 0.92;
-  letter-spacing: -0.075em;
-  font-weight: 900;
+  max-width: 840px;
+  margin: 0 0 18px;
+  font-size: clamp(2rem, 4.6vw, 4rem);
+  line-height: 1;
+  letter-spacing: -0.055em;
+  font-weight: 700;
 }
 
 .hero-text {
-  max-width: 760px;
+  max-width: 700px;
   color: var(--muted);
-  font-size: 1.05rem;
-  line-height: 1.7;
+  font-size: 0.98rem;
+  line-height: 1.65;
 }
 
 .main-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-top: 24px;
-  padding: 13px 20px;
+  margin-top: 20px;
+  padding: 10px 16px;
   background: var(--red);
   color: white;
   border: 1px solid var(--red);
-  border-radius: 8px;
+  border-radius: 5px;
   text-decoration: none;
-  font-weight: 800;
+  font-size: 0.88rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: 0.18s ease;
+  transition: 0.15s ease;
 }
 
 .main-btn:hover {
@@ -133,9 +124,9 @@ main {
 .diagnostic-section {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 22px;
+  gap: 18px;
   align-items: start;
-  margin-top: 34px;
+  margin-top: 28px;
 }
 
 .panel,
@@ -143,47 +134,49 @@ main {
 .report-card {
   background: linear-gradient(180deg, var(--surface-2), var(--surface));
   border: 1px solid var(--line);
-  border-radius: 10px;
+  border-radius: 6px;
 }
 
 .panel {
-  padding: 28px;
+  padding: 20px;
 }
 
 .panel h2 {
-  margin: 0 0 24px;
-  font-size: 1.5rem;
-  letter-spacing: -0.04em;
+  margin: 0 0 18px;
+  font-size: 1.25rem;
+  letter-spacing: -0.03em;
+  font-weight: 650;
 }
 
 .form-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 18px;
+  gap: 14px;
 }
 
 label {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 7px;
   color: white;
-  font-size: 0.86rem;
-  font-weight: 800;
+  font-size: 0.8rem;
+  font-weight: 600;
 }
 
 select,
 input,
 textarea {
   width: 100%;
-  min-height: 46px;
+  min-height: 40px;
   background: #050505;
   color: white;
-  border: 1px solid var(--line-strong);
-  border-radius: 7px;
-  padding: 0 13px;
+  border: 1px solid var(--line-2);
+  border-radius: 5px;
+  padding: 0 10px;
   outline: none;
   font: inherit;
-  font-weight: 600;
+  font-size: 0.88rem;
+  font-weight: 500;
   appearance: auto;
 }
 
@@ -200,21 +193,21 @@ textarea:focus {
 }
 
 option {
-  background: #111;
+  background: #111111;
   color: white;
 }
 
 textarea {
-  min-height: 120px;
-  padding: 13px;
+  min-height: 105px;
+  padding: 11px;
   resize: vertical;
-  margin-top: 16px;
-  line-height: 1.5;
+  margin-top: 14px;
+  line-height: 1.45;
 }
 
 .report {
-  margin-top: 34px;
-  padding: 30px;
+  margin-top: 28px;
+  padding: 22px;
 }
 
 .hidden {
@@ -223,62 +216,65 @@ textarea {
 
 .report-header {
   display: grid;
-  grid-template-columns: 1fr 220px;
-  gap: 28px;
+  grid-template-columns: 1fr 170px;
+  gap: 24px;
   align-items: center;
-  padding-bottom: 26px;
+  padding-bottom: 22px;
   border-bottom: 1px solid var(--line);
-  margin-bottom: 26px;
+  margin-bottom: 22px;
 }
 
 .report-header h2 {
-  margin: 0 0 12px;
-  font-size: clamp(2rem, 4vw, 3.2rem);
-  line-height: 0.96;
-  letter-spacing: -0.06em;
+  margin: 0 0 10px;
+  font-size: clamp(1.55rem, 3vw, 2.35rem);
+  line-height: 1.05;
+  letter-spacing: -0.045em;
+  font-weight: 650;
 }
 
 .report-header p {
   color: var(--muted);
-  line-height: 1.7;
+  line-height: 1.6;
+  font-size: 0.93rem;
 }
 
 .price-circle {
-  width: 205px;
-  height: 205px;
+  width: 158px;
+  height: 158px;
   border-radius: 50%;
-  background: conic-gradient(var(--red) 0deg 245deg, #262629 245deg 360deg);
+  background: conic-gradient(var(--red) 0deg 240deg, #252528 240deg 360deg);
   display: grid;
   place-items: center;
 }
 
 .circle-inner {
-  width: 158px;
-  height: 158px;
+  width: 124px;
+  height: 124px;
   border-radius: 50%;
   background: #070707;
   border: 1px solid var(--line);
   display: grid;
   place-items: center;
   text-align: center;
-  padding: 18px;
+  padding: 14px;
 }
 
 .circle-inner span,
 .circle-inner small {
   color: var(--muted);
-  font-size: 0.76rem;
-  font-weight: 700;
+  font-size: 0.68rem;
+  font-weight: 500;
 }
 
 .circle-inner strong {
-  font-size: 1.3rem;
+  font-size: 1rem;
+  font-weight: 650;
 }
 
 .report-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+  gap: 14px;
 }
 
 .report-grid.two {
@@ -286,25 +282,27 @@ textarea {
 }
 
 .report-card {
-  padding: 22px;
-  margin-bottom: 16px;
+  padding: 16px;
+  margin-bottom: 14px;
 }
 
 .report-card h3 {
-  margin: 0 0 10px;
-  font-size: 1rem;
-  letter-spacing: -0.02em;
+  margin: 0 0 9px;
+  font-size: 0.95rem;
+  letter-spacing: -0.015em;
+  font-weight: 650;
 }
 
 .report-card p,
 .report-card li {
   color: var(--muted);
-  line-height: 1.65;
+  line-height: 1.55;
+  font-size: 0.9rem;
 }
 
 .report-card ul {
   margin: 0;
-  padding-left: 18px;
+  padding-left: 17px;
 }
 
 .wide {
@@ -313,76 +311,81 @@ textarea {
 
 .diagram {
   display: grid;
-  grid-template-columns: 1fr 58px 1fr 58px 1fr;
-  gap: 12px;
+  grid-template-columns: 1fr 46px 1fr 46px 1fr;
+  gap: 10px;
   align-items: center;
-  margin: 28px 0;
+  margin: 24px 0;
 }
 
 .step {
   background: #070707;
   border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 20px;
+  border-radius: 5px;
+  padding: 15px;
   text-align: left;
 }
 
 .step span {
-  width: 34px;
-  height: 34px;
+  width: 28px;
+  height: 28px;
   background: var(--red);
   color: white;
   display: grid;
   place-items: center;
-  border-radius: 6px;
-  font-weight: 900;
-  margin-bottom: 12px;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  margin-bottom: 10px;
 }
 
 .step h4 {
-  margin: 0 0 8px;
+  margin: 0 0 6px;
+  font-size: 0.92rem;
+  font-weight: 650;
 }
 
 .step p {
   margin: 0;
   color: var(--muted);
-  line-height: 1.55;
+  font-size: 0.86rem;
+  line-height: 1.45;
 }
 
 .line {
   height: 1px;
   background: var(--red);
-  opacity: 0.75;
+  opacity: 0.6;
 }
 
 .disclaimer {
   color: var(--muted-2);
-  font-size: 0.88rem;
-  line-height: 1.6;
+  font-size: 0.82rem;
+  line-height: 1.55;
   border-top: 1px solid var(--line);
-  padding-top: 18px;
+  padding-top: 15px;
 }
 
 /* about/contact support */
 
 .about-page,
 .contact-section {
-  max-width: 1220px;
+  max-width: 1160px;
   margin: 0 auto;
-  padding: 70px 28px 90px;
+  padding: 56px 24px 70px;
 }
 
 .about-hero {
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
-  gap: 50px;
+  gap: 40px;
   align-items: center;
 }
 
 .about-hero h1 {
-  font-size: clamp(2.7rem, 6vw, 5.2rem);
-  line-height: 0.94;
-  letter-spacing: -0.07em;
+  font-size: clamp(2rem, 4.8vw, 4rem);
+  line-height: 1;
+  letter-spacing: -0.055em;
+  font-weight: 700;
 }
 
 .hero-lead,
@@ -393,7 +396,8 @@ textarea {
 .bottom-callout p,
 .contact-section p {
   color: var(--muted);
-  line-height: 1.7;
+  line-height: 1.6;
+  font-size: 0.93rem;
 }
 
 .mission-card,
@@ -401,40 +405,42 @@ textarea {
 .bottom-callout {
   background: linear-gradient(180deg, var(--surface-2), var(--surface));
   border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 26px;
+  border-radius: 6px;
+  padding: 18px;
 }
 
 .about-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
-  margin-top: 30px;
+  gap: 14px;
+  margin-top: 24px;
 }
 
 .about-intro {
   text-align: center;
-  padding: 56px 0 32px;
+  padding: 46px 0 26px;
 }
 
 .bottom-callout {
-  margin-top: 24px;
+  margin-top: 18px;
   display: flex;
-  gap: 20px;
+  gap: 16px;
 }
 
 .icon-box,
 .card-icon,
 .callout-icon {
-  width: 42px;
-  height: 42px;
-  border-radius: 7px;
-  background: rgba(227, 27, 35, 0.12);
+  width: 34px;
+  height: 34px;
+  border-radius: 5px;
+  background: rgba(215, 25, 32, 0.1);
   color: var(--red);
   display: grid;
   place-items: center;
-  margin-bottom: 18px;
+  margin-bottom: 14px;
 }
+
+/* mobile */
 
 @media (max-width: 1000px) {
   .diagnostic-section,
@@ -458,23 +464,27 @@ textarea {
   }
 
   .line {
-    height: 34px;
+    height: 28px;
     width: 1px;
     margin: 0 auto;
   }
 }
 
 @media (max-width: 700px) {
+  body {
+    font-size: 14px;
+  }
+
   .header {
     flex-direction: column;
-    gap: 16px;
-    padding: 22px 18px;
+    gap: 14px;
+    padding: 18px;
   }
 
   nav {
     justify-content: center;
     flex-wrap: wrap;
-    gap: 16px;
+    gap: 14px;
   }
 
   main,
@@ -485,7 +495,7 @@ textarea {
   }
 
   .hero {
-    padding: 54px 0;
+    padding: 42px 0;
   }
 
   .form-grid,
@@ -498,6 +508,6 @@ textarea {
   .panel,
   .report,
   .report-card {
-    padding: 20px;
+    padding: 16px;
   }
 }
