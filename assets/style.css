@@ -32,7 +32,7 @@ body {
   margin: 0 auto;
   padding: 18px 24px;
   display: flex;
-  justify-content: space-between;
+  justify-ent: space-between;
   align-items: center;
   border-bottom: 1px solid var(--line);
 }
@@ -102,7 +102,7 @@ main {
 .main-btn {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
+  justify-ent: center;
   margin-top: 20px;
   padding: 10px 16px;
   background: var(--red);
@@ -509,5 +509,122 @@ textarea {
   .report,
   .report-card {
     padding: 16px;
+  }
+}
+.contact-page {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 72px 24px 90px;
+}
+
+.contact-hero {
+  max-width: 820px;
+  margin-bottom: 42px;
+}
+
+.contact-hero h1 {
+  font-size: clamp(38px, 5vw, 66px);
+  line-height: 0.95;
+  margin: 0 0 22px;
+  letter-spacing: -2px;
+}
+
+.contact-hero p {
+  color: #cfcfcf;
+  line-height: 1.7;
+  font-size: 16px;
+}
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1.6fr 0.9fr;
+  gap: 24px;
+}
+
+.contact-card,
+.info-card {
+  border: 1px solid #2a2a2a;
+  background: #111;
+  padding: 28px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.field label {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.field input,
+.field textarea {
+  background: #070707;
+  border: 1px solid #333;
+  color: #fff;
+  padding: 14px;
+  font-size: 15px;
+  outline: none;
+}
+
+.field input:focus,
+.field textarea:focus {
+  border-color: #ef1c25;
+}
+
+.field textarea {
+  min-height: 160px;
+  resize: vertical;
+}
+
+button {
+  background: #ef1c25;
+  color: white;
+  border: none;
+  padding: 14px 22px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #c9151d;
+}
+
+.info-card h2 {
+  margin-top: 0;
+  font-size: 24px;
+}
+
+.info-card ul {
+  padding-left: 20px;
+  color: #d6d6d6;
+  line-height: 1.9;
+}
+
+.note {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid #2a2a2a;
+  color: #aaa;
+  line-height: 1.6;
+}
+
+@media (max-width: 850px) {
+  .contact-layout,
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-page {
+    padding-top: 42px;
   }
 }
