@@ -6,55 +6,79 @@
   <title>Contact | FixSmart</title>
   <link rel="stylesheet" href="assets/style.css" />
 </head>
+
 <body>
-  <header class="site-header">
-    <a class="brand" href="index.html"><span class="brand-mark">FS</span><span>FixSmart</span></a>
-    <nav class="top-nav" aria-label="Main navigation">
-      <a href="index.html">Diagnostic</a>
-      <a href="how-it-works.html">How it works</a>
-      <a href="about.html">About</a>
-      <a class="active" href="contact.html">Contact</a>
+  <header class="topbar">
+    <a class="brand" href="/">FIXSMART</a>
+
+    <nav>
+      <a href="/">Home</a>
+      <a href="/#diagnostic">Diagnostic</a>
+      <a href="/how-it-works.html">How it works</a>
+      <a href="/products/">Products</a>
+      <a href="/about.html">About</a>
+      <a class="active" href="/contact.html">Contact</a>
     </nav>
   </header>
 
-  <main>
-    <section class="hero simple">
-      <p class="eyebrow">Contact</p>
+  <main class="contact-page">
+    <section class="contact-hero">
+      <p class="eyebrow">CONTACT FIXSMART</p>
       <h1>Need help or want to report a wrong estimate?</h1>
-      <p>Send the vehicle year make model symptom and what result looked wrong. That helps improve the diagnostic logic.</p>
+      <p>
+        Send the vehicle year, make, model, symptoms, and what result looked wrong.
+        This helps improve the diagnostic logic and repair estimate system.
+      </p>
     </section>
 
-    <section class="contact-box">
-      <form name="fixsmart-contact" method="POST" data-netlify="true">
-        <input type="hidden" name="form-name" value="fixsmart-contact" />
+    <section class="contact-layout">
+      <form class="contact-card" name="contact" method="POST" data-netlify="true">
+        <input type="hidden" name="form-name" value="contact" />
 
-        <div class="form-grid">
+        <div class="form-row">
           <div class="field">
             <label for="name">Name</label>
-            <input id="name" name="name" type="text" required />
+            <input id="name" name="name" type="text" placeholder="Your name" required />
           </div>
 
           <div class="field">
             <label for="email">Email</label>
-            <input id="email" name="email" type="email" required />
-          </div>
-
-          <div class="field wide">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" required placeholder="Tell us what happened"></textarea>
+            <input id="email" name="email" type="email" placeholder="your@email.com" required />
           </div>
         </div>
 
-        <div class="button-row">
-          <button type="submit">Send message</button>
+        <div class="field">
+          <label for="vehicle">Vehicle</label>
+          <input id="vehicle" name="vehicle" type="text" placeholder="Example: 2015 Ford Mustang EcoBoost" />
         </div>
+
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Tell us what happened..." required></textarea>
+        </div>
+
+        <button type="submit">Send Message</button>
       </form>
+
+      <aside class="info-card">
+        <h2>What to include</h2>
+        <ul>
+          <li>Vehicle year, make, and model</li>
+          <li>Mileage</li>
+          <li>Main symptoms</li>
+          <li>Warning lights or codes</li>
+          <li>Mechanic quote if you have one</li>
+        </ul>
+
+        <div class="note">
+          FixSmart is not a final diagnosis. It is a guide to help you understand possible repair areas before visiting a shop.
+        </div>
+      </aside>
     </section>
   </main>
 
   <footer>
-    <span>FixSmart</span>
-    <span>Pre-shop diagnostic estimate tool</span>
+    <p>FixSmart — Pre-shop diagnostic estimate tool</p>
   </footer>
 </body>
 </html>
