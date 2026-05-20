@@ -1,0 +1,144 @@
+/* /products/products.css */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #0f0f10;
+  color: #f4f4f4;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+}
+
+.topbar {
+  height: 72px;
+  padding: 0 44px;
+  border-bottom: 1px solid #242424;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #101010;
+}
+
+.brand {
+  font-size: 14px;
+  letter-spacing: 4px;
+  font-weight: 700;
+}
+
+nav {
+  display: flex;
+  gap: 26px;
+}
+
+nav a {
+  color: #d8d8d8;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+nav a.active,
+nav a:hover {
+  color: #ef1c25;
+}
+
+main {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 52px 24px 70px;
+}
+
+.hero {
+  border-bottom: 1px solid #262626;
+  padding-bottom: 34px;
+  margin-bottom: 34px;
+}
+
+.eyebrow {
+  color: #ef1c25;
+  font-size: 12px;
+  letter-spacing: 3px;
+  font-weight: 700;
+  margin: 0 0 14px;
+}
+
+h1 {
+  margin: 0 0 14px;
+  font-size: 38px;
+  line-height: 1.1;
+  font-weight: 700;
+}
+
+.hero p {
+  max-width: 720px;
+  color: #cfcfcf;
+  line-height: 1.7;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.card {
+  min-height: 180px;
+  padding: 24px;
+  border: 1px solid #2d2d2d;
+  background: #121212;
+  color: white;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.card:hover {
+  border-color: #ef1c25;
+  transform: translateY(-3px);
+}
+
+.card h3 {
+  margin: 0 0 12px;
+  font-size: 18px;
+}
+
+.card p {
+  margin: 0;
+  color: #c9c9c9;
+  line-height: 1.55;
+}
+
+.card span {
+  margin-top: 22px;
+  color: #ef1c25;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+footer {
+  border-top: 1px solid #242424;
+  color: #a7a7a7;
+  padding: 26px 44px;
+  font-size: 13px;
+}
+
+@media (max-width: 850px) {
+  .topbar {
+    padding: 0 22px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  h1 {
+    font-size: 31px;
+  }
+
+  nav {
+    gap: 14px;
+  }
+}
